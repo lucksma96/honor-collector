@@ -9,7 +9,9 @@
     />
 
     <div class="file-list">
-        <span class="image-counter">{{ files.length }} image{{ files.length > 1 || files.length == 0 ? "ns" : "m" }}</span>
+        <span
+            class="image-counter"
+        >{{ files.length }} image{{ files.length > 1 || files.length == 0 ? "ns" : "m" }}</span>
         <div v-for="file in files" :key="file.name" class="file-list-item">
             <img
                 :src="createImgSrc(file)"
@@ -26,7 +28,11 @@
         <span class="success" v-if="isSuccess">Imagens enviadas!</span>
         <span class="error" v-if="isError">Parece que algo deu errado...</span>
     </div>
-    <button @click="send" :disabled="loading || files.length <= 0" class="send-button">{{ sendButtonText }}</button>
+    <button
+        @click="send"
+        :disabled="loading || files.length <= 0"
+        class="send-button"
+    >{{ sendButtonText }}</button>
 </template>
 <script lang="ts">
 import resizeImageFile from '@/utils/image-resize';
@@ -71,12 +77,12 @@ export default defineComponent({
 
             try {
                 await uploadFiles(this.files);
+                this.files.splice(0, this.files.length);
                 this.setSuccess();
             } catch (error) {
                 console.error(error);
                 this.setError();
             }
-            this.files.splice(0, this.files.length - 1);
 
             this.loading = false;
         },
