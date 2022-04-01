@@ -1,5 +1,12 @@
 <template>
-    <input v-on:change="onFileChange" type="file" multiple accept="image/*" capture="environment" />
+    <input
+        v-on:change="onFileChange"
+        type="file"
+        multiple
+        accept="image/*"
+        capture="environment"
+        :disabled="loading"
+    />
 
     <div class="file-list">
         <div v-for="file in files" :key="file.name" class="file-list-item">
@@ -13,8 +20,12 @@
             <span class="file-list-item-name">{{ file.name }}</span>
             <button @click="removeFile(file.name)" class="file-list-item-remove">&#x2715</button>
         </div>
-        <button @click="send">Enviar</button>
     </div>
+    <div class="status-message" v-if="isSuccess || isError">
+        <span class="success" v-if="isSuccess">Imagens enviadas!</span>
+        <span class="error" v-if="isError">Parece que algo deu errado...</span>
+    </div>
+    <button @click="send" :disabled="loading" class="send-button">{{ sendButtonText }}</button>
 </template>
 <script lang="ts">
 import resizeImageFile from '@/utils/image-resize';
@@ -23,7 +34,15 @@ import { defineComponent } from 'vue'
 export default defineComponent({
     data() {
         return {
-            files: new Array<File>()
+            files: new Array<File>(),
+            loading: false,
+            isSuccess: false,
+            isError: false,
+        }
+    },
+    computed: {
+        sendButtonText(): string {
+            return this.loading ? "Enviando" : "Enviar";
         }
     },
     methods: {
@@ -47,7 +66,26 @@ export default defineComponent({
             this.files.splice(index, 1);
         },
         async send() {
-            await uploadFiles(this.files);
+            this.loading = true;
+
+            try {
+                await uploadFiles(this.files);
+                this.setSuccess();
+            } catch (error) {
+                console.error(error);
+                this.setError();
+            }
+            this.files.splice(0, this.files.length - 1);
+
+            this.loading = false;
+        },
+        setSuccess() {
+            this.isSuccess = true;
+            setTimeout(() => this.isSuccess = false, 5000);
+        },
+        setError() {
+            this.isError = true;
+            setTimeout(() => this.isError = false, 10000);
         }
     }
 })
@@ -59,10 +97,11 @@ input[type="file"] {
 }
 input[type="file"]::-webkit-file-upload-button {
     /* visibility: hidden; */
+    height: 32px;
     display: inline-block;
     background: #ed1d24;
     border: 1px solid #fff100;
-    border-radius: 3px;
+    border-radius: 5px;
     padding: 5px 8px;
     outline: none;
     white-space: nowrap;
@@ -102,5 +141,21 @@ input[type="file"]:hover::before {
 }
 .file-list-item-image {
     border-radius: 2px;
+}
+
+.send-button {
+    height: 32px;
+    width: 100%;
+    margin: 16px 0 8px 0;
+    background: lightblue;
+    border: none;
+    border-radius: 5px;
+}
+
+.status-message .success {
+    color: green;
+}
+.status-message .error {
+    color: red;
 }
 </style>
