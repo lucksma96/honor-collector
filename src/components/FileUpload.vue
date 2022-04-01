@@ -9,6 +9,7 @@
     />
 
     <div class="file-list">
+        <span class="image-counter">{{ files.length }} image{{ files.length > 1 || files.length == 0 ? "ns" : "m" }}</span>
         <div v-for="file in files" :key="file.name" class="file-list-item">
             <img
                 :src="createImgSrc(file)"
@@ -25,7 +26,7 @@
         <span class="success" v-if="isSuccess">Imagens enviadas!</span>
         <span class="error" v-if="isError">Parece que algo deu errado...</span>
     </div>
-    <button @click="send" :disabled="loading" class="send-button">{{ sendButtonText }}</button>
+    <button @click="send" :disabled="loading || files.length <= 0" class="send-button">{{ sendButtonText }}</button>
 </template>
 <script lang="ts">
 import resizeImageFile from '@/utils/image-resize';
@@ -121,7 +122,11 @@ input[type="file"]:hover::before {
     display: flex;
     flex-direction: column;
     background: darkolivegreen;
-    margin: 1px;
+    margin: 16px 0 0 0;
+    border-radius: 2px;
+}
+.image-counter {
+    margin: 0 4px 0 4px;
 }
 .file-list-item {
     display: flex;
@@ -142,6 +147,11 @@ input[type="file"]:hover::before {
 .file-list-item-image {
     border-radius: 2px;
 }
+.file-list-item-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 4px 0 4px;
+}
 
 .send-button {
     height: 32px;
@@ -154,8 +164,10 @@ input[type="file"]:hover::before {
 
 .status-message .success {
     color: green;
+    margin: 0 4px 0 4px;
 }
 .status-message .error {
     color: red;
+    margin: 0 4px 0 4px;
 }
 </style>
