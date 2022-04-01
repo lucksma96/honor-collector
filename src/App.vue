@@ -4,11 +4,7 @@ import FileUpload from './components/FileUpload.vue'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/d1.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      
-    </div>
+    <img alt="Desbravadores D1" class="logo" src="./assets/d1.svg" width="128" height="128" />
   </header>
 
   <main>
@@ -17,7 +13,7 @@ import FileUpload from './components/FileUpload.vue'
 </template>
 
 <style>
-@import './assets/base.css';
+@import "./assets/base.css";
 
 #app {
   max-width: 1280px;
@@ -65,12 +61,6 @@ a,
     display: flex;
     place-items: center;
     padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
   }
 
   .logo {
