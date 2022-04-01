@@ -1,11 +1,5 @@
 <template>
-    <input
-        v-on:change="onFileChange"
-        type="file"
-        multiple
-        accept="image/*"
-        :disabled="loading"
-    />
+    <input v-on:change="onFileChange" type="file" multiple accept="image/*" :disabled="loading" />
 
     <div class="file-list">
         <span
@@ -35,7 +29,7 @@
 </template>
 <script lang="ts">
 import resizeImageFile from '@/utils/image-resize';
-import uploadFiles from '@/utils/gcs-file-upload-batch';
+import { uploadFiles } from '@/utils/gcs-storage';
 import { defineComponent } from 'vue'
 export default defineComponent({
     data() {
