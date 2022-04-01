@@ -4,7 +4,6 @@
         type="file"
         multiple
         accept="image/*"
-        capture="environment"
         :disabled="loading"
     />
 
