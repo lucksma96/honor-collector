@@ -18,7 +18,7 @@ export default async function uploadFiles(files: Array<File>): Promise<any> {
             requests.push(fetch(url, req as any));
         }
 
-        Promise.all(requests);
+        await Promise.all(requests);
     } catch (error) {
         console.error(error);
     }
