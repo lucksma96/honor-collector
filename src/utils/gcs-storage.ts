@@ -11,10 +11,11 @@ export async function uploadFile(file: File): Promise<any> {
         const headers = new Headers();
         headers.append("Content-Type", file.type);
 
-        const req: Pick<Request, "method" | "headers" | "body"> = {
+        //const req: Pick<Request, "method" | "headers" | "body"> = {
+	const req: any = {
             method: "POST",
             headers: headers,
-            body: file.stream(),
+            body: file,
         }
 
         await fetch(url, req);
