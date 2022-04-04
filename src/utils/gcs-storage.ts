@@ -11,8 +11,7 @@ export async function uploadFile(file: File): Promise<any> {
         const headers = new Headers();
         headers.append("Content-Type", file.type);
 
-        //const req: Pick<Request, "method" | "headers" | "body"> = {
-	const req: any = {
+        const req: RequestInit = {
             method: "POST",
             headers: headers,
             body: file,
