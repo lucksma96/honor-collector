@@ -29,7 +29,7 @@
 </template>
 <script lang="ts">
 import resizeImageFile from '@/utils/image-resize';
-import { uploadFiles } from '@/utils/gcs-storage';
+import { uploadFiles } from '@/utils/gcs';
 import { defineComponent } from 'vue'
 export default defineComponent({
     data() {
