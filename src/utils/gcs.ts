@@ -1,23 +1,15 @@
-const BUCKET_NAME = "public-honor-triage";
-
 import { uuidv4 } from "./uuid";
+import { getStorage, ref, uploadBytes } from "@firebase/storage";
 
 export default { uploadFile, uploadFiles };
 
 export async function uploadFile(file: File): Promise<any> {
     try {
-        const url = buildURL(file.name);
+        const storage = getStorage();
+        const filename = createNewFilename(file.name);
+        const storageRef = ref(storage, filename);
 
-        const headers = new Headers();
-        headers.append("Content-Type", file.type);
-
-        const req: RequestInit = {
-            method: "POST",
-            headers: headers,
-            body: file,
-        }
-
-        await fetch(url, req);
+        await uploadBytes(storageRef, file);
     } catch (error) {
         console.error(error);
     }
@@ -37,10 +29,9 @@ export async function uploadFiles(files: Array<File>): Promise<any> {
     }
 }
 
-function buildURL(filename: string): string {
+function createNewFilename(filename: string): string {
     const uuid = uuidv4();
     const timestamp = Date.now().toPrecision();
     const ext = filename.substring(filename.lastIndexOf('.') + 1, filename.length) || filename;
-    const name = `${uuid}_${timestamp}.${ext}`;
-    return `https://storage.googleapis.com/upload/storage/v1/b/${BUCKET_NAME}/o?uploadType=media&name=${name}`;
+    return `${uuid}_${timestamp}.${ext}`;
 }
