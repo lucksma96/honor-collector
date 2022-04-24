@@ -1,13 +1,7 @@
-// Import the functions you need from the SDKs you need
+import { connectStorageEmulator, getStorage } from "@firebase/storage";
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 
 export default function startFirebase(): any {
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     const firebaseConfig = {
         apiKey: "AIzaSyD7EmBG4IxKqOuN2coTSpdaHfddXkpXN_4",
         authDomain: "honor-collector.firebaseapp.com",
@@ -18,7 +12,7 @@ export default function startFirebase(): any {
         measurementId: "G-CXGXSMR7QQ"
     };
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
+    // const storage = getStorage(app);
+    // connectStorageEmulator(storage, "localhost", 9199)
 }
