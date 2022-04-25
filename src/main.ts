@@ -1,7 +1,10 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import startFirebase from './utils/firebase'
+import vuetify from './plugins/vuetify'
+import { loadFonts } from './plugins/webfontloader'
 
-createApp(App).mount('#app')
+loadFonts()
 
-startFirebase()
+createApp(App)
+  .use(vuetify)
+  .mount('#app')
