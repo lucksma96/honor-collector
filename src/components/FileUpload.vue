@@ -2,17 +2,11 @@
     <input v-on:change="onFileChange" type="file" multiple accept="image/*" :disabled="loading" />
 
     <div class="file-list">
-        <span
-            class="image-counter"
-        >{{ files.length }} image{{ files.length > 1 || files.length == 0 ? "ns" : "m" }}</span>
+        <span class="image-counter">{{ files.length }} image{{
+            files.length > 1 || files.length == 0 ? "ns" : "m"
+        }}</span>
         <div v-for="file in files" :key="file.name" class="file-list-item">
-            <img
-                :src="createImgSrc(file)"
-                width="64"
-                height="64"
-                class="file-list-item-image"
-                @load="resizeImage"
-            />
+            <img :src="createImgSrc(file)" width="64" height="64" class="file-list-item-image" @load="resizeImage" />
             <span class="file-list-item-name">{{ file.name }}</span>
             <button @click="removeFile(file.name)" class="file-list-item-remove">&#x2715</button>
         </div>
@@ -21,11 +15,7 @@
         <span class="success" v-if="isSuccess">Imagens enviadas!</span>
         <span class="error" v-if="isError">Parece que algo deu errado...</span>
     </div>
-    <button
-        @click="send"
-        :disabled="loading || files.length <= 0"
-        class="send-button"
-    >{{ sendButtonText }}</button>
+    <button @click="send" :disabled="loading || files.length <= 0" class="send-button">{{ sendButtonText }}</button>
 </template>
 <script lang="ts">
 import resizeImageFile from '@/utils/image-resize';
@@ -95,6 +85,7 @@ input[type="file"] {
     /* display: none; */
     color: transparent;
 }
+
 input[type="file"]::-webkit-file-upload-button {
     /* visibility: hidden; */
     height: 32px;
@@ -113,6 +104,7 @@ input[type="file"]::-webkit-file-upload-button {
     font-size: 10pt;
     font-variant: small-caps;
 }
+
 input[type="file"]:hover::before {
     border-color: black;
 }
@@ -124,9 +116,11 @@ input[type="file"]:hover::before {
     margin: 16px 0 0 0;
     border-radius: 2px;
 }
+
 .image-counter {
     margin: 0 4px 0 4px;
 }
+
 .file-list-item {
     display: flex;
     justify-content: space-between;
@@ -136,16 +130,20 @@ input[type="file"]:hover::before {
     background: rgb(132, 166, 72);
     border-radius: 2px;
 }
+
 .file-list-item:first-child {
     margin-top: 5px;
 }
+
 .file-list-item::after {
     display: block;
     border: 3px solid lightblue;
 }
+
 .file-list-item-image {
     border-radius: 2px;
 }
+
 .file-list-item-name {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -165,6 +163,7 @@ input[type="file"]:hover::before {
     color: green;
     margin: 0 4px 0 4px;
 }
+
 .status-message .error {
     color: red;
     margin: 0 4px 0 4px;
