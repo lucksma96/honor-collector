@@ -12,6 +12,10 @@
         </v-row>
       </v-container>
     </v-main>
+    <v-footer app>
+      <span>Contato: <a
+          href="mailto:lz.magnanimous+honor-collector@gmail.com">lz.magnanimous+honor-collector@gmail.com</a></span>
+    </v-footer>
   </v-app>
 </template>
 
