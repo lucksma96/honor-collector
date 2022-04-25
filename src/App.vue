@@ -2,7 +2,7 @@
   <v-app>
     <v-main>
       <v-container>
-        <v-row class="text-center">
+        <v-row class="text-center" justify="center">
           <v-col cols="12">
             <v-img :src="logo" class="my-3" contain height="200" />
           </v-col>
