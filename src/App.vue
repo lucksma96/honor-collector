@@ -2,11 +2,11 @@
   <v-app>
     <v-main>
       <v-container>
-        <v-row class="text-center" justify="center">
-          <v-col cols="12">
+        <v-row class="text-center" align="center" justify="center">
+          <v-col cols="12" md="4">
             <v-img :src="logo" class="my-3" contain height="200" />
           </v-col>
-          <v-col lg="4" md="6" sm="8" xs="12" class="mb-4">
+          <v-col md="auto" sm="8" xs="12" class="mb-4">
             <file-upload />
           </v-col>
         </v-row>
