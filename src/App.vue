@@ -1,18 +1,22 @@
 <template>
     <v-app>
-        <v-main>
+        <v-main class="primary align-sm-start align-md-center justify-center">
             <v-container>
-                <v-card>
-                    <v-row align="center" justify="center">
-                        <v-col cols="3">
+                <v-card class="pa-6">
+                    <v-row align="top" justify="center">
+                        <v-col align-self="center">
                             <v-img
                                 alt="D1"
                                 contain
                                 src="./assets/d1.svg"
                                 transition="scale-transition"
+                                width="256"
+                                class="float-sm-none float-md-right"
                             />
                         </v-col>
-                        <v-col cols="3"> <file-upload /> </v-col>
+                        <v-col cols="6">
+                            <file-upload />
+                        </v-col>
                     </v-row>
                 </v-card>
             </v-container>
