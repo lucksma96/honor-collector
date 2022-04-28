@@ -1,49 +1,58 @@
 <template>
     <v-container>
         <input
+            ref="fileInput"
             v-on:change="onFileChange"
             type="file"
             multiple
             accept="image/*"
             :disabled="loading"
+            hidden
         />
+        <v-btn @click="$refs.fileInput.click()" class="primary">
+            <v-icon left>mdi-camera</v-icon>
+            Escolher imagens</v-btn
+        >
 
-        <div class="file-list">
-            <span class="image-counter">
+        <v-list flat>
+            <v-subheader>
                 {{ files.length }} image{{
                     files.length > 1 || files.length == 0 ? "ns" : "m"
                 }}
-            </span>
-            <div v-for="file in files" :key="file.name" class="file-list-item">
-                <img
-                    :src="createImgSrc(file)"
-                    width="64"
-                    height="64"
-                    class="file-list-item-image"
-                    @load="resizeImage"
-                />
-                <span class="file-list-item-name">{{ file.name }}</span>
-                <button
-                    @click="removeFile(file.name)"
-                    class="file-list-item-remove"
-                >
-                    &#x2715;
-                </button>
-            </div>
-        </div>
+            </v-subheader>
+            <v-list-item v-for="file in files" :key="file.name">
+                <v-list-item-avatar>
+                    <img
+                        :src="createImgSrc(file)"
+                        alt="Miniatura da foto"
+                        width="64"
+                        height="64"
+                        @load="resizeImage"
+                    />
+                </v-list-item-avatar>
+                <v-list-item-content>
+                    <v-list-item-title v-text="file.name"></v-list-item-title>
+                </v-list-item-content>
+                <v-list-item-action>
+                    <v-btn icon @click="removeFile(file.name)" color="primary">
+                        <v-icon>mdi-delete</v-icon>
+                    </v-btn>
+                </v-list-item-action>
+            </v-list-item>
+        </v-list>
         <div class="status-message" v-if="isSuccess || isError">
             <span class="success" v-if="isSuccess">Imagens enviadas!</span>
             <span class="error" v-if="isError">
                 Parece que algo deu errado...
             </span>
         </div>
-        <button
+        <v-btn
             @click="send"
             :disabled="loading || files.length <= 0"
-            class="send-button"
+            class="primary"
         >
             {{ sendButtonText }}
-        </button>
+        </v-btn>
     </v-container>
 </template>
 <script lang="ts">
