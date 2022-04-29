@@ -22,7 +22,21 @@
             </v-container>
         </v-main>
         <v-footer app>
-            <!-- -->
+            <v-btn
+                :icon="$vuetify.breakpoint.mobile"
+                href="mailto:lz.magnanimous+honor-collector@gmail.com"
+            >
+                <v-icon :left="$vuetify.breakpoint.sm"> mdi-email </v-icon>
+                <span class="hidden-xs-only">E-mail</span>
+            </v-btn>
+            <v-btn
+                :icon="$vuetify.breakpoint.mobile"
+                href="https://github.com/lucksma96/honor-collector/"
+                target="_blank"
+            >
+                <v-icon :left="$vuetify.breakpoint.sm"> mdi-github </v-icon>
+                <span class="hidden-xs-only">GitHub</span>
+            </v-btn>
         </v-footer>
     </v-app>
 </template>
