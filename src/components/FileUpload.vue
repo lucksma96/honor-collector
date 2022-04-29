@@ -20,12 +20,11 @@
             <v-list-item v-for="file in files" :key="file.name">
                 <v-list-item-avatar>
                     <img
-                        :src="createImgSrc(file)"
+                        :src="thumbnails.get(file.name)"
                         alt="Miniatura da foto"
                         width="64"
                         height="64"
                         style="object-fit: cover"
-                        @load="resizeImage"
                     />
                 </v-list-item-avatar>
                 <v-list-item-content>
@@ -54,13 +53,13 @@
     </v-container>
 </template>
 <script lang="ts">
-import resizeImageFile from "@/utils/image-resize"
 import Vue from "vue"
 // import { uploadFiles } from '@/utils/gcs';
 export default Vue.extend({
     data() {
         return {
             files: new Array<File>(),
+            thumbnails: new Map<string, string>(),
             loading: false,
             isSuccess: false,
             isError: false,
@@ -81,14 +80,11 @@ export default Vue.extend({
             if (!input?.files?.item(0)) return
             for (let file of input.files) {
                 this.files.push(file)
+                this.thumbnails.set(file.name, this.createImgSrc(file))
             }
         },
         createImgSrc(file: File): string {
             return URL.createObjectURL(file)
-        },
-        resizeImage(e: Event): string {
-            const img = e.target as HTMLImageElement
-            return resizeImageFile(img)
         },
         removeFile(filename: string) {
             const index = this.files.findIndex((x) => x.name == filename)
