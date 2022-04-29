@@ -1,24 +1,21 @@
 <template>
-    <v-container>
+    <v-container class="d-flex d-sm-block flex-column justify-center">
         <input
+            :disabled="loading"
             ref="fileInput"
-            v-on:change="onFileChange"
             type="file"
             multiple
             accept="image/*"
-            :disabled="loading"
             hidden
+            @change="onFileChange"
         />
-        <v-btn @click="$refs.fileInput.click()" class="primary">
-            <v-icon left>mdi-camera</v-icon>
-            Escolher imagens</v-btn
-        >
+        <v-btn class="primary mx-auto" @click="$refs.fileInput.click()">
+            <v-icon left>mdi-camera</v-icon> Escolher imagens
+        </v-btn>
 
-        <v-list flat>
+        <v-list flat class="align-self-stretch" max-width="70vw">
             <v-subheader>
-                {{ files.length }} image{{
-                    files.length > 1 || files.length == 0 ? "ns" : "m"
-                }}
+                {{ imageCounter }}
             </v-subheader>
             <v-list-item v-for="file in files" :key="file.name">
                 <v-list-item-avatar>
@@ -27,6 +24,7 @@
                         alt="Miniatura da foto"
                         width="64"
                         height="64"
+                        style="object-fit: cover"
                         @load="resizeImage"
                     />
                 </v-list-item-avatar>
@@ -34,7 +32,7 @@
                     <v-list-item-title v-text="file.name"></v-list-item-title>
                 </v-list-item-content>
                 <v-list-item-action>
-                    <v-btn icon @click="removeFile(file.name)" color="primary">
+                    <v-btn icon color="primary" @click="removeFile(file.name)">
                         <v-icon>mdi-delete</v-icon>
                     </v-btn>
                 </v-list-item-action>
@@ -47,9 +45,9 @@
             </span>
         </div>
         <v-btn
-            @click="send"
             :disabled="loading || files.length <= 0"
-            class="primary"
+            class="accent black--text mx-auto"
+            @click="send"
         >
             {{ sendButtonText }}
         </v-btn>
@@ -71,6 +69,10 @@ export default Vue.extend({
     computed: {
         sendButtonText(): string {
             return this.loading ? "Enviando" : "Enviar"
+        },
+        imageCounter(): string {
+            const isSingular = this.files.length == 1
+            return `${this.files.length} image${isSingular ? "m" : "ns"}`
         },
     },
     methods: {
