@@ -1,5 +1,5 @@
 <template>
-    <v-container class="d-flex d-sm-block flex-column justify-center">
+    <v-container class="d-flex d-sm-block flex-column">
         <input
             :disabled="loading"
             ref="fileInput"
@@ -9,11 +9,20 @@
             hidden
             @change="onFileChange"
         />
-        <v-btn class="primary mx-auto" @click="$refs.fileInput.click()">
+        <v-btn
+            :block="$vuetify.breakpoint.smAndUp"
+            class="primary mx-auto mb-3"
+            @click="$refs.fileInput.click()"
+        >
             <v-icon left>mdi-camera</v-icon> Escolher imagens
         </v-btn>
 
-        <v-list flat class="align-self-stretch" max-width="70vw">
+        <v-list
+            outlined
+            rounded
+            class="align-self-stretch mx-auto"
+            max-width="70vw"
+        >
             <v-subheader>
                 {{ imageCounter }}
             </v-subheader>
@@ -45,7 +54,7 @@
         </div>
         <v-btn
             :disabled="loading || files.length <= 0"
-            class="accent black--text mx-auto"
+            class="accent black--text mx-auto mt-2"
             @click="send"
         >
             {{ sendButtonText }}

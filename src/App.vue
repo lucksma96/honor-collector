@@ -22,7 +22,7 @@
                                         class="float-md-right mx-auto"
                                     />
                                 </v-col>
-                                <v-col xs="12" md="4">
+                                <v-col xs="12" md="5">
                                     <file-upload />
                                 </v-col>
                             </v-row>
@@ -36,7 +36,7 @@
                 :icon="$vuetify.breakpoint.mobile"
                 href="mailto:lz.magnanimous+honor-collector@gmail.com"
             >
-                <v-icon :left="$vuetify.breakpoint.sm"> mdi-email </v-icon>
+                <v-icon :left="$vuetify.breakpoint.smAndUp">mdi-email</v-icon>
                 <span class="hidden-xs-only">E-mail</span>
             </v-btn>
             <v-btn
@@ -44,7 +44,7 @@
                 href="https://github.com/lucksma96/honor-collector/"
                 target="_blank"
             >
-                <v-icon :left="$vuetify.breakpoint.sm"> mdi-github </v-icon>
+                <v-icon :left="$vuetify.breakpoint.smAndUp">mdi-github</v-icon>
                 <span class="hidden-xs-only">GitHub</span>
             </v-btn>
         </v-footer>
