@@ -1,24 +1,34 @@
 <template>
     <v-app>
-        <v-main class="primary align-sm-start align-md-center justify-center">
-            <v-container>
-                <v-card class="pa-6">
-                    <v-row align="top" justify="center">
-                        <v-col align-self="center">
-                            <v-img
-                                alt="D1"
-                                contain
-                                src="./assets/d1.svg"
-                                transition="scale-transition"
-                                width="256"
-                                class="float-sm-none float-md-right"
-                            />
-                        </v-col>
-                        <v-col cols="6">
-                            <file-upload />
-                        </v-col>
-                    </v-row>
-                </v-card>
+        <v-main class="primary">
+            <v-container
+                class="d-flex align-sm-start align-md-center justify-center"
+            >
+                <v-row align="center" justify="center">
+                    <v-col xs="12" md="6">
+                        <v-card class="pa-8">
+                            <v-row
+                                align="top"
+                                justify="center"
+                                class="my-sm-12"
+                            >
+                                <v-col xs="12" md="4">
+                                    <v-img
+                                        alt="D1"
+                                        contain
+                                        src="./assets/d1.svg"
+                                        transition="scale-transition"
+                                        max-width="256"
+                                        class="float-md-right mx-auto"
+                                    />
+                                </v-col>
+                                <v-col xs="12" md="4">
+                                    <file-upload />
+                                </v-col>
+                            </v-row>
+                        </v-card>
+                    </v-col>
+                </v-row>
             </v-container>
         </v-main>
         <v-footer app>
