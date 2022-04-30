@@ -8,7 +8,7 @@
                     <v-col xs="12" md="6">
                         <v-card class="pa-8">
                             <v-row
-                                align="top"
+                                align="start"
                                 justify="center"
                                 class="my-sm-12"
                             >
