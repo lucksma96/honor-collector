@@ -1,5 +1,5 @@
-//import { connectStorageEmulator, getStorage } from "@firebase/storage";
-//import { initializeApp } from "firebase/app";
+// import { connectStorageEmulator, getStorage } from "@firebase/storage"
+import { initializeApp } from "firebase/app"
 
 export default function startFirebase(): void {
     const firebaseConfig = {
@@ -12,7 +12,7 @@ export default function startFirebase(): void {
         measurementId: "G-CXGXSMR7QQ",
     }
 
-    //const app = initializeApp(firebaseConfig);
-    // const storage = getStorage(app);
-    // connectStorageEmulator(storage, "localhost", 9199)
+    /* const app =  */ initializeApp(firebaseConfig)
+    /* const storage = getStorage(app)
+    connectStorageEmulator(storage, "localhost", 9199) */
 }
