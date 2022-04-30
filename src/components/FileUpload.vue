@@ -46,11 +46,13 @@
                 </v-list-item-action>
             </v-list-item>
         </v-list>
-        <div class="status-message" v-if="isSuccess || isError">
-            <span class="success" v-if="isSuccess">Imagens enviadas!</span>
-            <span class="error" v-if="isError">
+        <div class="mt-2">
+            <v-alert v-model="isSuccess" dismissible type="success">
+                Imagens enviadas!
+            </v-alert>
+            <v-alert v-model="isError" dismissible type="error">
                 Parece que algo deu errado...
-            </span>
+            </v-alert>
         </div>
         <v-btn
             :disabled="loading || files.length <= 0"
@@ -63,7 +65,7 @@
 </template>
 <script lang="ts">
 import Vue from "vue"
-// import { uploadFiles } from '@/utils/gcs';
+import { uploadFiles } from "@/utils/gcs"
 export default Vue.extend({
     data() {
         return {
@@ -104,7 +106,7 @@ export default Vue.extend({
             this.loading = true
 
             try {
-                // await uploadFiles(this.files);
+                await uploadFiles(this.files)
                 this.files.splice(0, this.files.length)
                 this.setSuccess()
             } catch (error) {
@@ -120,7 +122,6 @@ export default Vue.extend({
         },
         setError() {
             this.isError = true
-            setTimeout(() => (this.isError = false), 10000)
         },
     },
 })
