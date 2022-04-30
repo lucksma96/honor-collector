@@ -1,4 +1,4 @@
-// import { connectStorageEmulator, getStorage } from "@firebase/storage"
+import { connectStorageEmulator, getStorage } from "@firebase/storage"
 import { initializeApp } from "firebase/app"
 
 export default function startFirebase(): void {
@@ -12,7 +12,8 @@ export default function startFirebase(): void {
         measurementId: "G-CXGXSMR7QQ",
     }
 
-    /* const app =  */ initializeApp(firebaseConfig)
-    /* const storage = getStorage(app)
-    connectStorageEmulator(storage, "localhost", 9199) */
+    const app = initializeApp(firebaseConfig)
+    const storage = getStorage(app)
+    storage.maxUploadRetryTime = 30000 // 30s
+    connectStorageEmulator(storage, "localhost", 9199)
 }
