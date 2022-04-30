@@ -1,26 +1,27 @@
 import { uuidv4 } from "./uuid"
-//import { getStorage, ref, uploadBytes } from "@firebase/storage";
+import { getStorage, ref, uploadBytes, UploadResult } from "@firebase/storage"
 
 export default { uploadFile, uploadFiles }
 
-export async function uploadFile(file: File): Promise<void> {
+export async function uploadFile(file: File): Promise<UploadResult> {
     try {
-        //const storage = getStorage();
+        const storage = getStorage()
         const filename = createNewFilename(file.name)
-        //const storageRef = ref(storage, filename);
+        const storageRef = ref(storage, filename)
 
-        //await uploadBytes(storageRef, file);
+        return await uploadBytes(storageRef, file)
     } catch (error) {
         console.error(error)
+        return Promise.reject(error)
     }
 }
 
 export async function uploadFiles(files: Array<File>): Promise<void> {
     try {
-        const requests = new Array<Promise<Response>>()
+        const requests = new Array<Promise<UploadResult>>()
 
         for (const file of files) {
-            //requests.push(uploadFile(file));
+            requests.push(uploadFile(file))
         }
 
         await Promise.all(requests)
@@ -34,6 +35,6 @@ function createNewFilename(filename: string): string {
     const timestamp = Date.now().toPrecision()
     const ext =
         filename.substring(filename.lastIndexOf(".") + 1, filename.length) ||
-        filename
+        ".image" // add this to indicate that an extension was not found
     return `${uuid}_${timestamp}.${ext}`
 }
