@@ -20,6 +20,7 @@
         <v-list
             outlined
             rounded
+            dense
             class="align-self-stretch mx-auto"
             max-width="70vw"
         >

@@ -12,8 +12,9 @@ export default new Vuetify({
             light: {
                 primary: colors.blue,
                 secondary: colors.shades.white,
-                tertiary: colors.green.darken1,
-                accent: colors.yellow.accent3,
+                tertiary: "#ED1C24",
+                accent: "#FFF200",
+                sash: colors.green.darken4,
             },
         },
     },

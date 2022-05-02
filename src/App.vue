@@ -5,7 +5,7 @@
                 class="d-flex align-sm-start align-md-center justify-center"
             >
                 <v-row align="center" justify="center">
-                    <v-col xs="12" md="6">
+                    <v-col xs="12" sm="10" md="10" lg="8" xl="6">
                         <v-card class="pa-8">
                             <v-row
                                 align="start"
@@ -31,22 +31,34 @@
                 </v-row>
             </v-container>
         </v-main>
-        <v-footer app>
-            <v-btn
-                :icon="$vuetify.breakpoint.mobile"
-                href="mailto:lz.magnanimous+honor-collector@gmail.com"
-            >
-                <v-icon :left="$vuetify.breakpoint.smAndUp">mdi-email</v-icon>
-                <span class="hidden-xs-only">E-mail</span>
-            </v-btn>
-            <v-btn
-                :icon="$vuetify.breakpoint.mobile"
-                href="https://github.com/lucksma96/honor-collector/"
-                target="_blank"
-            >
-                <v-icon :left="$vuetify.breakpoint.smAndUp">mdi-github</v-icon>
-                <span class="hidden-xs-only">GitHub</span>
-            </v-btn>
+        <v-footer app fixed class="tertiary">
+            <v-row justify="center" no-gutters>
+                <v-btn
+                    :icon="$vuetify.breakpoint.xsOnly"
+                    outlined
+                    color="accent"
+                    href="mailto:lz.magnanimous+honor-collector@gmail.com"
+                    class="mx-1"
+                >
+                    <v-icon :left="$vuetify.breakpoint.smAndUp"
+                        >mdi-email</v-icon
+                    >
+                    <span class="hidden-xs-only">E-mail</span>
+                </v-btn>
+                <v-btn
+                    :icon="$vuetify.breakpoint.xsOnly"
+                    href="https://github.com/lucksma96/honor-collector/"
+                    target="_blank"
+                    outlined
+                    color="accent"
+                    class="mx-1"
+                >
+                    <v-icon :left="$vuetify.breakpoint.smAndUp"
+                        >mdi-github</v-icon
+                    >
+                    <span class="hidden-xs-only">GitHub</span>
+                </v-btn>
+            </v-row>
         </v-footer>
     </v-app>
 </template>
