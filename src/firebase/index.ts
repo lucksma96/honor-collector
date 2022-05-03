@@ -15,5 +15,5 @@ export default function startFirebase(): void {
     const app = initializeApp(firebaseConfig)
     const storage = getStorage(app)
     storage.maxUploadRetryTime = 30000 // 30s
-    connectStorageEmulator(storage, "localhost", 9199)
+    //connectStorageEmulator(storage, "localhost", 9199)
 }
